@@ -18,24 +18,21 @@ Maven
 Usage
 =====
 
-1. Subclass DijkstraCalculation
-```
-public class MyDijkstra extends DijkstraCalculation
-```
-1. Override 2 abstract methods and provide your own implementation
-```
-    public abstract void setUpDataFromDatabase();
-    public abstract void setUpData();
-```
-1. Invoke method calculateShortestPathBetween or calculateShortestPathWithWeight with vertices ids as arguments (from, to)
-```
-int distance = this.mDijkstra.calculateShortestPathBetween(from, to);
-```
-or use implemented AsyncTask to calculate distance in background thread by providing reference to your instance of DijkstraCalculation subclass.
-```
-dijkstraCalculationAsyncTask = new DijkstraCalculationAsyncTask(MyDijkstra.getInstance(this), this);
-dijkstraCalculationAsyncTask.execute(from, to);
-```
+1. Subclass DijkstraCalculation.
+```public class MyDijkstra extends DijkstraCalculation```
+
+2. Override 2 abstract methods and provide your own implementation.
+```public abstract void setUpDataFromDatabase();
+   public abstract void setUpData();```
+
+3. Invoke method calculateShortestPathBetween or calculateShortestPathWithWeight
+   with vertices ids as arguments (from, to).
+```int distance = this.mDijkstra.calculateShortestPathBetween(from, to);```
+
+   Or use implemented AsyncTask to calculate distance in background thread.
+   by providing reference to your instance of DijkstraCalculation subclass.
+```dijkstraCalculationAsyncTask = new DijkstraCalculationAsyncTask(MyDijkstra.getInstance(this), this);
+   dijkstraCalculationAsyncTask.execute(from, to);```
 
 Example
 =======
@@ -87,7 +84,7 @@ public class MyDijkstra extends DijkstraCalculation{
         for (GeoData.GeoZoneRelation geoZoneRelation : geoZoneRelationArray) {
             Vertex vertexFrom = getVertexFromListById(geoZoneRelation.getFromzoneid());
             Vertex vertexTo = getVertexFromListById(geoZoneRelation.getTozoneid());
-            if((vertexFrom!=null)&&(vertexTo!=null)) {
+            if((vertexFrom != null) && (vertexTo != null)) {
                 mEdges.add(new Edge(new String("edge_"+geoZoneRelation.getFromzoneid()+"_"+geoZoneRelation.getTozoneid()), vertexFrom, vertexTo, geoZoneRelation.getDistance()));
                 mEdges.add(new Edge(new String("edge_"+geoZoneRelation.getTozoneid()+"_"+geoZoneRelation.getFromzoneid()), vertexTo, vertexFrom, geoZoneRelation.getDistance()));
             }
