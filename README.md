@@ -22,12 +22,12 @@ Usage
 ```
 public class MyDijkstra extends DijkstraCalculation
 ```
-2. Override 2 abstract methods and provide your own implementation
+1. Override 2 abstract methods and provide your own implementation
 ```
     public abstract void setUpDataFromDatabase();
     public abstract void setUpData();
 ```
-3. Invoke method calculateShortestPathBetween or calculateShortestPathWithWeight with vertices ids as arguments (from, to)
+1. Invoke method calculateShortestPathBetween or calculateShortestPathWithWeight with vertices ids as arguments (from, to)
 ```
 int distance = this.mDijkstra.calculateShortestPathBetween(from, to);
 ```
