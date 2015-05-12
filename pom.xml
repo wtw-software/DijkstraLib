@@ -6,8 +6,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>no.wtw.android</groupId>
     <artifactId>dijkstra-algorithm</artifactId>
-    <version>1.0</version>
-    <packaging>apklib</packaging>
+    <version>1.1</version>
+    <packaging>aar</packaging>
     <name>DijkstraAlgorithm</name>
     <scm>
         <connection>scm:git:git@github.com/wtw-software/DijkstraAlgorithm.git</connection>
