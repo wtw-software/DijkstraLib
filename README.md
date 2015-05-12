@@ -3,9 +3,7 @@ DijkstraLib
 
 Dijkstra algorithm implementation for Android. Used to calculate shortest path/distance between given polygons.
 
-Maven
-=====
-
+## Maven
 ```
 <dependency>
     <groupId>no.wtw.android</groupId>
@@ -15,8 +13,7 @@ Maven
 </dependency>
 ```
 
-Gralde
-=====
+## Gralde
 ```
 dependencies {
     ...
@@ -25,8 +22,7 @@ dependencies {
 }
 ```
 
-Usage
-=====
+## Usage
 
 1. Subclass DijkstraCalculation.
 ```public class MyDijkstra extends DijkstraCalculation```
@@ -44,8 +40,7 @@ Usage
 ```dijkstraCalculationAsyncTask = new DijkstraCalculationAsyncTask(MyDijkstra.getInstance(this), this);
    dijkstraCalculationAsyncTask.execute(from, to);```
 
-Example
-=======
+## Example
 
 MyDijkstra class implementation
 
@@ -107,8 +102,7 @@ public class MyDijkstra extends DijkstraCalculation{
 
 ```
 
-License
-=======
+## License
 
     Copyright 2014 WTW AS
 
