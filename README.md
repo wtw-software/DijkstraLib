@@ -13,7 +13,11 @@ Maven
     <type>apklib</type>
     <version>1.3</version>
 </dependency>
+```
 
+Gralde
+=====
+```
 dependencies {
     ...
     compile 'no.wtw.android:dijkstra-algorithm:1.3'
