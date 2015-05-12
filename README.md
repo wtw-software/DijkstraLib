@@ -11,8 +11,14 @@ Maven
     <groupId>no.wtw.android</groupId>
     <artifactId>dijkstra-algorithm</artifactId>
     <type>apklib</type>
-    <version>1.0</version>
+    <version>1.3</version>
 </dependency>
+
+dependencies {
+    ...
+    compile 'no.wtw.android:dijkstra-algorithm:1.3'
+    ...
+}
 ```
 
 Usage
