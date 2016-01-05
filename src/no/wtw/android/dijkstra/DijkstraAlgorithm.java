@@ -119,4 +119,11 @@ public class DijkstraAlgorithm {
         }
         return null;
     }
+
+    public int getDistance(Vertex vertex) {
+        if(vertex != null && mDistance != null) {
+            return mDistance.get(vertex);
+        }
+        return -1;
+    }
 }
