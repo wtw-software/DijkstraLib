@@ -13,7 +13,7 @@ Dijkstra algorithm implementation for Android. Used to calculate shortest path/d
 </dependency>
 ```
 
-## Gralde
+## Gradle
 ```
 dependencies {
     ...
