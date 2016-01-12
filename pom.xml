@@ -10,9 +10,9 @@
     <packaging>jar</packaging>
     <name>DijkstraAlgorithm</name>
     <scm>
-        <connection>scm:git:git@github.com/wtw-software/DijkstraAlgorithm.git</connection>
-        <url>scm:git:git@github.com:wtw-software/DijkstraAlgorithm.git</url>
-        <developerConnection>scm:git:git@github.com:wtw-software/DijkstraAlgorithm.git</developerConnection>
+        <connection>scm:git:git@github.com/goldnarms/DijkstraAlgorithm.git</connection>
+        <url>scm:git:git@github.com:goldnarms/DijkstraAlgorithm.git</url>
+        <developerConnection>scm:git:git@github.com:goldnarms/DijkstraAlgorithm.git</developerConnection>
     </scm>
     <distributionManagement>
         <repository>
