@@ -6,51 +6,51 @@ import no.wtw.android.dijkstra.model.Vertex;
 
 import java.util.*;
 
-public class DijkstraAlgorithm {
+public class DijkstraAlgorithm<T> {
 
     private static final String TAG = DijkstraAlgorithm.class.getSimpleName();
-    private final List<Vertex> mNodes;
-    private final List<Edge> mEdges;
-    private Set<Vertex> mSettledNodes;
-    private Set<Vertex> mUnSettledNodes;
-    private Map<Vertex, Vertex> mPredecessors;
-    private Map<Vertex, Integer> mDistance;
-    private Vertex mSource;
+    private final List<Vertex<T>> nodes;
+    private final List<Edge<T>> edges;
+    private Set<Vertex<T>> settledNodes;
+    private Set<Vertex<T>> unSettledNodes;
+    private Map<Vertex<T>, Vertex<T>> predecessors;
+    private Map<Vertex<T>, Integer> distance;
+    private Vertex<T> source;
 
-    public DijkstraAlgorithm(Graph graph) {
-        this.mNodes = new ArrayList<Vertex>(graph.getVertexes());
-        this.mEdges = new ArrayList<Edge>(graph.getEdges());
+    public DijkstraAlgorithm(Graph<T> graph) {
+        this.nodes = new ArrayList<>(graph.getVertexes());
+        this.edges = new ArrayList<>(graph.getEdges());
     }
 
-    public void execute(Vertex source) {
-        mSource = source;
-        mSettledNodes = new HashSet<Vertex>();
-        mUnSettledNodes = new HashSet<Vertex>();
-        mDistance = new HashMap<Vertex, Integer>();
-        mPredecessors = new HashMap<Vertex, Vertex>();
-        mDistance.put(source, 0);
-        mUnSettledNodes.add(source);
-        while (mUnSettledNodes.size() > 0) {
-            Vertex node = getMinimum(mUnSettledNodes);
-            mSettledNodes.add(node);
-            mUnSettledNodes.remove(node);
+    public void execute(Vertex<T> source) {
+        this.source = source;
+        settledNodes = new HashSet<>();
+        unSettledNodes = new HashSet<>();
+        distance = new HashMap<>();
+        predecessors = new HashMap<>();
+        distance.put(source, 0);
+        unSettledNodes.add(source);
+        while (unSettledNodes.size() > 0) {
+            Vertex<T> node = getMinimum(unSettledNodes);
+            settledNodes.add(node);
+            unSettledNodes.remove(node);
             findMinimalDistances(node);
         }
     }
 
-    private void findMinimalDistances(Vertex node) {
-        List<Vertex> adjacentNodes = getNeighbors(node);
+    private void findMinimalDistances(Vertex<T> node) {
+        List<Vertex<T>> adjacentNodes = getNeighbors(node);
         for (Vertex target : adjacentNodes) {
             if (getShortestDistance(target) > getShortestDistance(node) + getDistance(node, target)) {
-                mDistance.put(target, getShortestDistance(node) + getDistance(node, target));
-                mPredecessors.put(target, node);
-                mUnSettledNodes.add(target);
+                distance.put(target, getShortestDistance(node) + getDistance(node, target));
+                predecessors.put(target, node);
+                unSettledNodes.add(target);
             }
         }
     }
 
-    private int getDistance(Vertex node, Vertex target) {
-        for (Edge edge : mEdges) {
+    private int getDistance(Vertex<T> node, Vertex<T> target) {
+        for (Edge edge : edges) {
             if (edge.getSource().equals(node) && edge.getDestination().equals(target)) {
                 return edge.getWeight();
             }
@@ -58,9 +58,9 @@ public class DijkstraAlgorithm {
         throw new RuntimeException("Should not happen");
     }
 
-    private List<Vertex> getNeighbors(Vertex node) {
-        List<Vertex> neighbors = new ArrayList<Vertex>();
-        for (Edge edge : mEdges) {
+    private List<Vertex<T>> getNeighbors(Vertex<T> node) {
+        List<Vertex<T>> neighbors = new ArrayList<>();
+        for (Edge<T> edge : edges) {
             if (edge.getSource().equals(node) && !isSettled(edge.getDestination())) {
                 neighbors.add(edge.getDestination());
             }
@@ -68,9 +68,9 @@ public class DijkstraAlgorithm {
         return neighbors;
     }
 
-    private Vertex getMinimum(Set<Vertex> vertexes) {
-        Vertex minimum = null;
-        for (Vertex vertex : vertexes) {
+    private Vertex<T> getMinimum(Set<Vertex<T>> vertexes) {
+        Vertex<T> minimum = null;
+        for (Vertex<T> vertex : vertexes) {
             if (minimum == null) {
                 minimum = vertex;
             } else {
@@ -82,12 +82,12 @@ public class DijkstraAlgorithm {
         return minimum;
     }
 
-    private boolean isSettled(Vertex vertex) {
-        return mSettledNodes.contains(vertex);
+    private boolean isSettled(Vertex<T> vertex) {
+        return settledNodes.contains(vertex);
     }
 
-    private int getShortestDistance(Vertex destination) {
-        Integer d = mDistance.get(destination);
+    private int getShortestDistance(Vertex<T> destination) {
+        Integer d = distance.get(destination);
         if (d == null) {
             return Integer.MAX_VALUE;
         } else {
@@ -95,22 +95,22 @@ public class DijkstraAlgorithm {
         }
     }
 
-    public LinkedList<Vertex> getPath(Vertex target) {
+    public LinkedList<Vertex<T>> getPath(Vertex<T> target) {
         if (target != null) {
-            LinkedList<Vertex> path = new LinkedList<Vertex>();
-            if (target.equals(mSource)) {
+            LinkedList<Vertex<T>> path = new LinkedList<>();
+            if (target.equals(source)) {
                 path.add(target);
                 return path;
             }
 
-            Vertex step = target;
-            if (mPredecessors.get(step) == null) {
+            Vertex<T> step = target;
+            if (predecessors.get(step) == null) {
                 return null;
             }
 
             path.add(step);
-            while (mPredecessors.get(step) != null) {
-                step = mPredecessors.get(step);
+            while (predecessors.get(step) != null) {
+                step = predecessors.get(step);
                 path.add(step);
             }
 
@@ -120,9 +120,9 @@ public class DijkstraAlgorithm {
         return null;
     }
 
-    public int getDistance(Vertex vertex) {
-        if(vertex != null && mDistance != null) {
-            return mDistance.get(vertex);
+    public int getDistance(Vertex<T> vertex) {
+        if(vertex != null && distance != null) {
+            return distance.get(vertex);
         }
         return -1;
     }

@@ -1,27 +1,27 @@
 package no.wtw.android.dijkstra.model;
 
-public class Vertex {
+public class Vertex<T> {
 
     private static final String TAG = Vertex.class.getSimpleName();
-    final private int mId;
-    final private String mName;
+    final private T id;
+    final private String name;
 
-    public Vertex(int id, String name) {
-        this.mId = id;
-        this.mName = name;
+    public Vertex(T id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public int getId() {
-        return mId;
+    public T getId() {
+        return id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     @Override
     public int hashCode() {
-        return mId;
+        return System.identityHashCode(this);
     }
 
     @Override
@@ -35,12 +35,8 @@ public class Vertex {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Vertex other = (Vertex) obj;
-        if (mId == -1) {
-            if (other.mId != -1) {
-                return false;
-            }
-        } else if (mId != (other.mId)) {
+        Vertex<T> other = (Vertex<T>) obj;
+        if (id != (other.id)) {
             return false;
         }
         return true;
@@ -48,6 +44,6 @@ public class Vertex {
 
     @Override
     public String toString() {
-        return mName;
+        return name;
     }
 } 

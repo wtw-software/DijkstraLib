@@ -1,38 +1,38 @@
 package no.wtw.android.dijkstra.model;
 
-public class Edge {
+public class Edge<T> {
 
     private static final String TAG = Edge.class.getSimpleName();
-    private final String mId;
-    private final Vertex mSource;
-    private final Vertex mDestination;
-    private final int mWeight;
+    private final T id;
+    private final Vertex source;
+    private final Vertex destination;
+    private final int weight;
 
-    public Edge(String id, Vertex source, Vertex destination, int weight) {
-        this.mId = id;
-        this.mSource = source;
-        this.mDestination = destination;
-        this.mWeight = weight;
+    public Edge(T id, Vertex source, Vertex destination, int weight) {
+        this.id = id;
+        this.source = source;
+        this.destination = destination;
+        this.weight = weight;
     }
 
-    public String getId() {
-        return mId;
+    public T getId() {
+        return id;
     }
 
     public Vertex getDestination() {
-        return mDestination;
+        return destination;
     }
 
     public Vertex getSource() {
-        return mSource;
+        return source;
     }
 
     public int getWeight() {
-        return mWeight;
+        return weight;
     }
 
     @Override
     public String toString() {
-        return mSource + " " + mDestination;
+        return source + " " + destination;
     }
 }

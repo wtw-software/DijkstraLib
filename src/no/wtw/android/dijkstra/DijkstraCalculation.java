@@ -8,22 +8,20 @@ import no.wtw.android.dijkstra.model.Vertex;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class DijkstraCalculation {
+public abstract class DijkstraCalculation<T> {
 
     private static final String TAG = DijkstraCalculation.class.getSimpleName();
 
-    protected List<Vertex> mNodes;
-    protected List<Edge> mEdges;
+    protected List<Vertex<T>> nodes;
+    protected List<Edge<T>> edges;
 
     public abstract void setUpDataFromDatabase();
-
-    public abstract void setUpData();
 
     protected DijkstraCalculation() {
     }
 
-    protected Vertex getVertexFromListById(int id) {
-        for (Vertex vertex : mNodes) {
+    protected Vertex<T> getVertexFromListById(String id) {
+        for (Vertex<T> vertex : nodes) {
             if (vertex.getId() == id) {
                 return vertex;
             }
@@ -31,9 +29,18 @@ public abstract class DijkstraCalculation {
         return null;
     }
 
-    protected int getDistanceBetweenZones(int from, int to) {
+    protected Vertex<T> getVertexFromListById(T id) {
+        for (Vertex<T> vertex : nodes) {
+            if (vertex.getId() == id) {
+                return vertex;
+            }
+        }
+        return null;
+    }
+
+    protected int getDistanceBetweenZones(T from, T to) {
         int distance = 0;
-        for (Edge edge : mEdges) {
+        for (Edge<T> edge : edges) {
             if ((edge.getSource().getId() == from) && (edge.getDestination().getId() == to)) {
                 distance = edge.getWeight();
             }
@@ -41,15 +48,18 @@ public abstract class DijkstraCalculation {
         return distance;
     }
 
-    public int calculateShortestPathBetween(int zoneFrom, int zoneTo) {
+    public int calculateShortestPathBetween(T zoneFromId, T zoneToId) {
+        return calculateDistance(getVertexFromListById(zoneFromId), getVertexFromListById(zoneToId));
+    }
+
+    private int calculateDistance(Vertex<T> zoneFrom, Vertex<T> zoneTo){
         int distance = -1;
-        Graph graph = new Graph(mNodes, mEdges);
-        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-        Vertex vertex = getVertexFromListById(zoneFrom);
-        LinkedList<Vertex> path = null;
-        if (vertex != null) {
-            dijkstra.execute(vertex);
-            path = dijkstra.getPath(getVertexFromListById(zoneTo));
+        Graph<T> graph = new Graph(nodes, edges);
+        DijkstraAlgorithm<T> dijkstra = new DijkstraAlgorithm<T>(graph);
+        LinkedList<Vertex<T>> path = null;
+        if (zoneFrom != null) {
+            dijkstra.execute(zoneFrom);
+            path = dijkstra.getPath(zoneTo);
         }
 
         if ((path != null) && (path.size() > 0)) {
@@ -59,14 +69,15 @@ public abstract class DijkstraCalculation {
         }
 
         return distance;
+
     }
 
-    public int calculateShortestPathWithWeight(int zoneFrom, int zoneTo) {
+    public int calculateShortestPathWithWeight(T zoneFrom, T zoneTo) {
         int distance = -1;
-        Graph graph = new Graph(mNodes, mEdges);
-        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-        Vertex vertex = getVertexFromListById(zoneFrom);
-        LinkedList<Vertex> path = null;
+        Graph<T> graph = new Graph(nodes, edges);
+        DijkstraAlgorithm<T> dijkstra = new DijkstraAlgorithm(graph);
+        Vertex<T> vertex = getVertexFromListById(zoneFrom);
+        LinkedList<Vertex<T>> path = null;
 
         if (vertex != null) {
             dijkstra.execute(vertex);
