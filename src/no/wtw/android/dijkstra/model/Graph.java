@@ -2,22 +2,22 @@ package no.wtw.android.dijkstra.model;
 
 import java.util.List;
 
-public class Graph {
+public class Graph<T> {
 
     private static final String TAG = Graph.class.getSimpleName();
-    private final List<Vertex> mVertexes;
-    private final List<Edge> mEdges;
+    private final List<Vertex<T>> vertexes;
+    private final List<Edge<T>> edges;
 
-    public Graph(List<Vertex> vertexes, List<Edge> edges) {
-        this.mVertexes = vertexes;
-        this.mEdges = edges;
+    public Graph(List<Vertex<T>> vertexes, List<Edge<T>> edges) {
+        this.vertexes = vertexes;
+        this.edges = edges;
     }
 
-    public List<Vertex> getVertexes() {
-        return mVertexes;
+    public List<Vertex<T>> getVertexes() {
+        return vertexes;
     }
 
-    public List<Edge> getEdges() {
-        return mEdges;
+    public List<Edge<T>> getEdges() {
+        return edges;
     }
 }

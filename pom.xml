@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>no.wtw.android</groupId>
+    <groupId>com.codejunkii.android</groupId>
     <artifactId>dijkstra-algorithm</artifactId>
     <version>1.4</version>
     <packaging>jar</packaging>
     <name>DijkstraAlgorithm</name>
     <scm>
-        <connection>scm:git:git@github.com/wtw-software/DijkstraAlgorithm.git</connection>
-        <url>scm:git:git@github.com:wtw-software/DijkstraAlgorithm.git</url>
-        <developerConnection>scm:git:git@github.com:wtw-software/DijkstraAlgorithm.git</developerConnection>
+        <connection>scm:git:git@github.com/goldnarms/DijkstraAlgorithm.git</connection>
+        <url>scm:git:git@github.com:goldnarms/DijkstraAlgorithm.git</url>
+        <developerConnection>scm:git:git@github.com:goldnarms/DijkstraAlgorithm.git</developerConnection>
     </scm>
     <distributionManagement>
         <repository>
