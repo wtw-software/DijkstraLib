@@ -26,6 +26,11 @@ public class Vertex<T> {
     }
 
     @Override
+    public int hashCode() {
+        return payload.hashCode();
+    }
+
+    @Override
     public String toString() {
         return payload.toString();
     }
