@@ -4,20 +4,14 @@ import java.util.List;
 
 public class Graph {
 
-    private static final String TAG = Graph.class.getSimpleName();
-    private final List<Vertex> mVertexes;
-    private final List<Edge> mEdges;
+    private final List<Edge> edges;
 
-    public Graph(List<Vertex> vertexes, List<Edge> edges) {
-        this.mVertexes = vertexes;
-        this.mEdges = edges;
-    }
-
-    public List<Vertex> getVertexes() {
-        return mVertexes;
+    public Graph(List<Edge> edges) {
+        this.edges = edges;
     }
 
     public List<Edge> getEdges() {
-        return mEdges;
+        return edges;
     }
+
 }
