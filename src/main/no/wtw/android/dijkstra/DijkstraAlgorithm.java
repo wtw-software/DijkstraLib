@@ -111,7 +111,10 @@ public class DijkstraAlgorithm {
 
     public int getDistance(Vertex vertex) throws PathNotFoundException {
         if (vertex == null || distance == null)
+            throw new IllegalArgumentException("Destination vertex can not be null");
+        if(distance.get(vertex) == null) {
             throw new PathNotFoundException();
+        }
         return distance.get(vertex);
     }
 
@@ -125,7 +128,7 @@ public class DijkstraAlgorithm {
     }
 
     public int getShortestPathLength(Vertex from, Vertex to) throws PathNotFoundException {
-        if (from == null || to == null)
+        if (from == null || to == null || getPath(to) == null)
             throw new IllegalArgumentException("Source and destination vertices can not be null");
         return getPath(to).size();
     }
