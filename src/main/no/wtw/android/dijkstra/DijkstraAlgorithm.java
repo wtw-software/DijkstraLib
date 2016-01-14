@@ -130,9 +130,6 @@ public class DijkstraAlgorithm {
     public int getShortestPathLength(Vertex from, Vertex to) throws PathNotFoundException {
         if (from == null || to == null)
             throw new IllegalArgumentException("Source and destination vertices can not be null");
-        if(getPath(to) == null) {
-            throw new PathNotFoundException();
-        }
         return getPath(to).size();
     }
 

@@ -82,11 +82,6 @@ public class DijkstraAlgorithmTest {
     }
 
     @Test(expected = PathNotFoundException.class)
-    public void testGetShortestDistance_OneInvalidInput() throws PathNotFoundException {
-        da.getShortestDistance(new Vertex<>("1"), new Vertex<>("5"));
-    }
-
-    @Test(expected = PathNotFoundException.class)
     public void testGetShortestPathLength_TwoInvalidInputs() throws PathNotFoundException {
         da.getShortestPathLength(new Vertex<>("14"), new Vertex<>("Kåre"));
     }
@@ -99,6 +94,11 @@ public class DijkstraAlgorithmTest {
     @Test(expected = PathNotFoundException.class)
     public void testGetShortestPathLength_OneInvalidInput() throws PathNotFoundException {
         da.getShortestPathLength(new Vertex<>("1"), new Vertex<>("5"));
+    }
+
+    @Test(expected = PathNotFoundException.class)
+    public void testGetShortestDistance_OneInvalidInput() throws PathNotFoundException {
+        da.getShortestDistance(new Vertex<>("1"), new Vertex<>("5"));
     }
 
     @Test(expected = PathNotFoundException.class)
