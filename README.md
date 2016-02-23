@@ -1,9 +1,9 @@
 DijkstraLib
 ===========
 
-[![](https://jitpack.io/v/wtw-software/DijkstraLib.svg)](https://jitpack.io/#wtw-software/DijkstraLib)
-
 Dijkstra algorithm implementation for Android. Used to calculate shortest path/distance between given polygons.
+
+[![](https://jitpack.io/v/wtw-software/DijkstraLib.svg)](https://jitpack.io/#wtw-software/DijkstraLib)
 
 ## Usage
 
