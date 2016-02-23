@@ -3,24 +3,7 @@ DijkstraLib
 
 Dijkstra algorithm implementation for Android. Used to calculate shortest path/distance between given polygons.
 
-## Maven
-```
-<dependency>
-    <groupId>no.wtw.android</groupId>
-    <artifactId>dijkstra-algorithm</artifactId>
-    <type>jar</type>
-    <version>2.1</version>
-</dependency>
-```
-
-## Gralde
-```
-dependencies {
-    ...
-    compile 'no.wtw.android:dijkstra-algorithm:2.1'
-    ...
-}
-```
+[![](https://jitpack.io/v/wtw-software/DijkstraLib.svg)](https://jitpack.io/#wtw-software/DijkstraLib)
 
 ## Usage
 
